@@ -1,14 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Index from "../views/Index.vue";
+import userLogin from "./user/login.js";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Index",
+    component: Index
   },
   {
     path: "/about",
@@ -18,7 +19,8 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+  },
+  userLogin
 ];
 
 const router = new VueRouter({
