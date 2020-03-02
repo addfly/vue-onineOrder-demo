@@ -12,8 +12,8 @@
       />
     </van-nav-bar>
 
-    <!-- 搜索框 -->
-    <van-search v-model="value" placeholder="龙湖餐厅 满25-5" />
+    <!-- 搜索 -->
+    <search></search>
 
     <!-- 轮播图 -->
     <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
@@ -45,14 +45,6 @@
       ></van-swipe-item>
     </van-swipe>
 
-    <!-- tabbar 标签栏 -->
-    <van-tabbar v-model="active">
-      <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="search" dot>标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o" info="5">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o" info="20">标签</van-tabbar-item>
-    </van-tabbar>
-
     <!-- 内容 -->
     <div style="height:250px;background-color:grey"></div>
 
@@ -73,29 +65,46 @@
         <van-cell v-for="item in list" :key="item" :title="item" />
       </van-list>
     </van-pull-refresh>
+
+    <!-- tabbar 底部导航 -->
+    <tabbar :tabbarIndex="tabbarIndex"></tabbar>
+    <!-- 底部安全区设置 -->
+    <div class="bottomWhite"></div>
   </div>
 </template>
 <script>
 import {
   NavBar,
-  Search,
   Swipe,
   SwipeItem,
   Grid,
   GridItem,
-  Tabbar,
-  TabbarItem,
   DropdownMenu,
   DropdownItem,
   List,
   PullRefresh,
   Cell
 } from "vant";
+import tabbar from "../components/Tabbar";
+import search from "../components/Search";
 export default {
+  components: {
+    [NavBar.name]: NavBar,
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem,
+    [Grid.name]: Grid,
+    [GridItem.name]: GridItem,
+    [DropdownMenu.name]: DropdownMenu,
+    [DropdownItem.name]: DropdownItem,
+    [List.name]: List,
+    [PullRefresh.name]: PullRefresh,
+    [Cell.name]: Cell,
+    tabbar,
+    search
+  },
   data() {
     return {
-      value: "",
-      active: 1,
+      tabbarIndex: 0,
       value1: 0,
       value2: "a",
       option1: [
@@ -113,21 +122,6 @@ export default {
       finished: false,
       refreshing: false
     };
-  },
-  components: {
-    [NavBar.name]: NavBar,
-    [Search.name]: Search,
-    [Swipe.name]: Swipe,
-    [SwipeItem.name]: SwipeItem,
-    [Grid.name]: Grid,
-    [GridItem.name]: GridItem,
-    [Tabbar.name]: Tabbar,
-    [TabbarItem.name]: TabbarItem,
-    [DropdownMenu.name]: DropdownMenu,
-    [DropdownItem.name]: DropdownItem,
-    [List.name]: List,
-    [PullRefresh.name]: PullRefresh,
-    [Cell.name]: Cell
   },
   methods: {
     onLoad() {
@@ -181,5 +175,8 @@ export default {
   line-height: 150px;
   text-align: center;
   background-color: #39a9ed;
+}
+.bottomWhite {
+  height: 50px;
 }
 </style>

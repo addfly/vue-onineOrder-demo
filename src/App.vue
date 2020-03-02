@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <!-- 底部安全区设置 -->
-    <div class="bottomWhite"></div>
   </div>
 </template>
 
@@ -14,8 +12,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.bottomWhite {
-  height: 50px;
-}
-</style>
+<style lang="scss"></style>
